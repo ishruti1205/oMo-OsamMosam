@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:paddingVertical="15dp"
+    android:layout_marginHorizontal="15.5dp">
+
+    <TextView
+        android:id="@+id/hourly_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="12:00"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        android:textColor="@color/whiteColor"
+        />
+
+    <ImageView
+        android:id="@+id/hourly_weather_icon"
+        android:layout_width="21dp"
+        android:layout_height="21dp"
+        android:layout_marginVertical="10dp"
+        android:src="@drawable/cloudy_img"
+        android:contentDescription="Current Weather Symbol"/>
+
+    <TextView
+        android:id="@+id/current_temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="25°"
+        android:textSize="14sp"
+        android:textColor="@color/whiteColor"
+        android:textStyle="bold"/>
+</LinearLayout>

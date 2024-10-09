@@ -1,0 +1,14 @@
+API for Current Weather:
+https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
+
+
+
+Enter API Key: https://api.openweathermap.org/data/2.5/weather?q={city name}&appid=df6e7472c74227efcecc770beb4107b5
+
+
+Enter City Name:
+https://api.openweathermap.org/data/2.5/weather?q=jalandhar&appid=df6e7472c74227efcecc770beb4107b5
+
+
+Sir's API Key: f3f1545f79861467179b8e92868d2b43
+
