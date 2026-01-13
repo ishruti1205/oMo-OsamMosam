@@ -52,10 +52,10 @@ The app is designed to help users make informed daily decisions without overwhel
 
 ---
 ## Screenshots
-<img src="ss/1.png" height = "400" width="200"/>  <img src="ss/3.png" height = "400" width="200"/>  <img src="ss/3.png" height = "400" width="200"/>  <img src="ss/6.png" height = "400" width="200"/>  
-<img src="ss/7.png" height = "400" width="200"/>  <img src="ss/10.png" height = "400" width="200"/>  <img src="ss/13.png" height = "400" width="200"/>  <img src="ss/15.png" height = "400" width="200"/>  
-<img src="ss/30.png" height = "400" width="200"/>  <img src="ss/32.png" height = "400" width="200"/>  <img src="ss/35.png" height = "400" width="200"/> <img src="ss/36.png" height = "400" width="200"/>
-<img src="ss/37.png" height = "400" width="200"/>  <img src="ss/40.png" height = "400" width="200"/>  <img src="ss/41.png" height = "400" width="200"/> <img src="ss/42.png" height = "400" width="200"/>
+<img src="screenshots/1.png" height = "400" width="200"/>  <img src="screenshots/3.png" height = "400" width="200"/>  <img src="screenshots/3.png" height = "400" width="200"/>  <img src="screenshots/6.png" height = "400" width="200"/>  
+<img src="screenshots/7.png" height = "400" width="200"/>  <img src="screenshots/10.png" height = "400" width="200"/>  <img src="screenshots/13.png" height = "400" width="200"/>  <img src="screenshots/15.png" height = "400" width="200"/>  
+<img src="screenshots/30.png" height = "400" width="200"/>  <img src="screenshots/32.png" height = "400" width="200"/>  <img src="screenshots/35.png" height = "400" width="200"/> <img src="screenshots/36.png" height = "400" width="200"/>
+<img src="screenshots/37.png" height = "400" width="200"/>  <img src="screenshots/40.png" height = "400" width="200"/>  <img src="screenshots/41.png" height = "400" width="200"/> <img src="screenshots/42.png" height = "400" width="200"/>
 
 
 ## Project Status
