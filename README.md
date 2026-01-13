@@ -52,10 +52,10 @@ The app is designed to help users make informed daily decisions without overwhel
 
 ---
 ## Screenshots
-<img src="screenshots/1.png" height = "400" width="200"/>  <img src="screenshots/3.png" height = "400" width="200"/>  <img src="screenshots/3.png" height = "400" width="200"/>  <img src="screenshots/6.png" height = "400" width="200"/>  
-<img src="screenshots/7.png" height = "400" width="200"/>  <img src="screenshots/10.png" height = "400" width="200"/>  <img src="screenshots/13.png" height = "400" width="200"/>  <img src="screenshots/15.png" height = "400" width="200"/>  
-<img src="screenshots/30.png" height = "400" width="200"/>  <img src="screenshots/32.png" height = "400" width="200"/>  <img src="screenshots/35.png" height = "400" width="200"/> <img src="screenshots/36.png" height = "400" width="200"/>
-<img src="screenshots/37.png" height = "400" width="200"/>  <img src="screenshots/40.png" height = "400" width="200"/>  <img src="screenshots/41.png" height = "400" width="200"/> <img src="screenshots/42.png" height = "400" width="200"/>
+<img src="Screenshots/1.png" height = "400" width="200"/>  <img src="Screenshots/3.png" height = "400" width="200"/>  <img src="Screenshots/3.png" height = "400" width="200"/>  <img src="Screenshots/6.png" height = "400" width="200"/>  
+<img src="Screenshots/7.png" height = "400" width="200"/>  <img src="Screenshots/10.png" height = "400" width="200"/>  <img src="Screenshots/13.png" height = "400" width="200"/>  <img src="Screenshots/15.png" height = "400" width="200"/>  
+<img src="Screenshots/30.png" height = "400" width="200"/>  <img src="Screenshots/32.png" height = "400" width="200"/>  <img src="Screenshots/35.png" height = "400" width="200"/> <img src="Screenshots/36.png" height = "400" width="200"/>
+<img src="Screenshots/37.png" height = "400" width="200"/>  <img src="Screenshots/40.png" height = "400" width="200"/>  <img src="Screenshots/41.png" height = "400" width="200"/> <img src="Screenshots/42.png" height = "400" width="200"/>
 
 
 ## Project Status
