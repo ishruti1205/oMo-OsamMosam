@@ -31,18 +31,19 @@ public class HourlyWeatherAPI extends AsyncTask<String, Void, String> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        mainActivity.getLoader_progress_bar().setVisibility(View.VISIBLE);
+        mainActivity.showLoader();
     }
 
     @Override
     protected String doInBackground(String... params) {
-        String city = params[0];
-        return HttpRequest.excuteGet("https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=metric&appid=" + API_Key);
+        String lat = params[0];
+        String lon = params[1];
+        return HttpRequest.excuteGet("https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon="+ lon + "&units=metric&appid=" + API_Key);
     }
 
     @Override
     protected void onPostExecute(String result) {
-        mainActivity.getLoader_progress_bar().setVisibility(View.GONE);
+        mainActivity.hideLoader();
 
         if (result != null && !result.isEmpty()) {
             List<HourlyWeather> hourlyWeatherList = getHourlyWeatherData(result);
@@ -101,7 +102,7 @@ public class HourlyWeatherAPI extends AsyncTask<String, Void, String> {
                     String temperature = (int) Math.round(Double.parseDouble(main.getString("temp"))) + "°";
                     JSONArray weatherArray = hourlyObject.getJSONArray("weather");
                     JSONObject weather = weatherArray.getJSONObject(0);
-                    String description = weather.getString("description");
+                    String description = weather.getString("description").toLowerCase();
                     int icon;
 
                     JSONObject sys = hourlyObject.getJSONObject("sys");

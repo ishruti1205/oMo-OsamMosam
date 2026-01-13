@@ -6,6 +6,7 @@
         <item name="backgroundColor">@color/blackColor</item>
         <item name="android:textColorPrimary">@color/whiteColor</item>
         <item name="buttonTintPrimary">@color/darkGrayColor</item>
+        <item name="cardTintPrimary">@color/lightDarkGrayColor</item>
 
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>

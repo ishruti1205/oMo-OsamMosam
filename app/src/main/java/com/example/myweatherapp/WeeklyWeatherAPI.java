@@ -28,7 +28,7 @@ public class WeeklyWeatherAPI extends AsyncTask<Void, Void, List<WeeklyWeather>>
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        mainActivity.getLoader_progress_bar().setVisibility(View.VISIBLE);
+        mainActivity.showLoader();
     }
 
     @Override
@@ -38,7 +38,7 @@ public class WeeklyWeatherAPI extends AsyncTask<Void, Void, List<WeeklyWeather>>
 
     @Override
     protected void onPostExecute(List<WeeklyWeather> weeklyWeatherList) {
-        mainActivity.getLoader_progress_bar().setVisibility(View.GONE);
+        mainActivity.hideLoader();
 
         if (weeklyWeatherList != null && !weeklyWeatherList.isEmpty()) {
             WeeklyWeatherAdapter weeklyWeatherAdapter = new WeeklyWeatherAdapter(weeklyWeatherList);

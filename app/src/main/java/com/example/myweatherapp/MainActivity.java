@@ -1,29 +1,25 @@
 package com.example.myweatherapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.RecyclerView;
-import android.util.Log;
-import android.widget.Toast;
-
-import com.androdocs.httprequest.HttpRequest;
-
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import com.google.gson.Gson;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private List<WeeklyWeather> weeklyWeatherList;
 
     private final String API_Key = "df6e7472c74227efcecc770beb4107b5";
-    private LinearLayout background;
+    private LinearLayout bgColor;
+    private ImageView bgIcon;
     private TextView city;
     private TextView current_temperature;
     private TextView weather_description;
@@ -75,12 +72,20 @@ public class MainActivity extends AppCompatActivity {
         return API_Key;
     }
 
-    public LinearLayout getBackground() {
-        return background;
+    public LinearLayout getBgColor() {
+        return bgColor;
     }
 
-    public void setBackground(LinearLayout background) {
-        this.background = background;
+    public void setBgColor(LinearLayout bgColor) {
+        this.bgColor = bgColor;
+    }
+
+    public ImageView getBgIcon() {
+        return bgIcon;
+    }
+
+    public void setBgIcon(ImageView bgIcon) {
+        this.bgIcon = bgIcon;
     }
 
     public TextView getCity() {
@@ -334,19 +339,21 @@ public class MainActivity extends AppCompatActivity {
     private ImageView location_icon, settings_icon, aqi_indicator,
             sun_indicator, left_sun_img, right_sun_img;
     private ProgressBar aqi_progress_bar, sun_progress_bar, loader_progress_bar;
+    private View overlay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.root_layout), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.content_layout), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0);
             return insets;
         });
 
-        background = findViewById(R.id.root_layout);
+        bgColor = findViewById(R.id.content_layout);
+        bgIcon = findViewById(R.id.bgIcon);
         city = findViewById(R.id.city);
         current_temperature = findViewById(R.id.current_temperature);
         weather_description = findViewById(R.id.weather_description);
@@ -380,13 +387,49 @@ public class MainActivity extends AppCompatActivity {
         right_sun_time = findViewById(R.id.right_sun_time);
 
         loader_progress_bar = findViewById(R.id.loader_progress_bar);
-
-        new CurrentWeather(MainActivity.this, getAPI_Key(), getCity().getText().toString()).execute();
+        overlay = findViewById(R.id.overlay);
 
         location_icon.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, CityActivity.class);
             startActivity(intent);
         });
+
+        // Check if a city was saved
+        SharedPreferences sharedPreferences = getSharedPreferences("CityPrefs", MODE_PRIVATE);
+        String lastSelectedCityJson = sharedPreferences.getString("lastSelectedCity", null);
+
+        double lat, lon;
+        if (lastSelectedCityJson != null) {
+            // Parse the saved city details
+            City lastSelectedCity = new Gson().fromJson(lastSelectedCityJson, City.class);
+            lat = lastSelectedCity.getLatitude();
+            lon = lastSelectedCity.getLongitude();
+        } else {
+            // Default to 0, 0
+            lat = 0;
+            lon = 0;
+        }
+
+        new CurrentWeatherAPI(MainActivity.this, getAPI_Key(), lat, lon).execute();
+    }
+
+    private int activeTasks = 0; // Track running tasks
+
+    public void showLoader() {
+        activeTasks++;
+        if (activeTasks > 0) {
+            loader_progress_bar.setVisibility(View.VISIBLE);
+            overlay.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public void hideLoader() {
+        activeTasks--;
+        if (activeTasks <= 0) {
+            loader_progress_bar.setVisibility(View.GONE);
+            overlay.setVisibility(View.GONE);
+            activeTasks = 0; // Reset to avoid negative counts
+        }
     }
 
     public static String formatTime(long timeMillis) {
@@ -506,6 +549,76 @@ public class MainActivity extends AppCompatActivity {
         return R.drawable.mist_img;
     }
 
+
+    public int getWeatherBgImg(String description, boolean day) {
+        if (day){
+            if (description.contains("clear sky")) {
+                return R.drawable.sun_img_bg;
+            }
+            else if (description.contains("few clouds")) {
+                return R.drawable.partly_cloudy_day_img_bg;
+            }
+            else if (description.contains("scattered clouds")) {
+                return R.drawable.partly_cloudy_day_img_bg;
+            }
+            else if (description.contains("broken clouds") || description.contains("overcast clouds")) {
+                return R.drawable.cloudy_img_bg;
+            }
+            else if (description.contains("thunderstorm")) {
+                return R.drawable.thunderstorm_img_bg;
+            }
+            else if (description.contains("drizzle")) {
+                return R.drawable.moderate_rain_img_bg;
+            }
+            else if (description.contains("heavy") && description.contains("rain")) {
+                return R.drawable.heavy_rain_img_bg;
+            }
+            else if (description.contains("shower rain")) {
+                return R.drawable.light_rain_img_bg;
+            }
+            else if (description.contains("snow") || description.contains("sleet") || description.contains("freezing rain")) {
+                return R.drawable.snow_img_bg;
+            }
+            else if (description.contains("rain")) {
+                return R.drawable.moderate_rain_img_bg;
+            }
+        }
+        else{
+            if (description.contains("clear sky")) {
+                return R.drawable.moon_img_bg;
+            }
+            else if (description.contains("few clouds")) {
+                return R.drawable.partly_cloudy_night_img_bg;
+            }
+            else if (description.contains("scattered clouds")) {
+                return R.drawable.partly_cloudy_night_img_bg;
+            }
+            else if (description.contains("broken clouds") || description.contains("overcast clouds")) {
+                return R.drawable.cloudy_img_bg;
+            }
+            else if (description.contains("thunderstorm")) {
+                return R.drawable.thunderstorm_img_bg;
+            }
+            else if (description.contains("drizzle")) {
+                return R.drawable.moderate_rain_img_bg;
+            }
+            else if (description.contains("heavy") && description.contains("rain")) {
+                return R.drawable.heavy_rain_img_bg;
+            }
+            else if (description.contains("shower rain")) {
+                return R.drawable.light_rain_img_bg;
+            }
+            else if (description.contains("snow") || description.contains("sleet") || description.contains("freezing rain")) {
+                return R.drawable.snow_img_bg;
+            }
+            else if (description.contains("rain")) {
+                return R.drawable.moderate_rain_img_bg;
+            }
+
+        }
+        // main = atmosphere
+        return R.drawable.mist_img;
+    }
 
     public static String capitalizeWords(String str) {
         if (str == null || str.isEmpty()) {

@@ -8,11 +8,7 @@ import android.widget.Toast;
 import com.androdocs.httprequest.HttpRequest;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
-public class CurrentUVIAQI extends AsyncTask<String, Void, String> {
+public class CurrentUVIAQIAPI extends AsyncTask<String, Void, String> {
 
     private MainActivity mainActivity;
     private Double latitude;
@@ -21,7 +17,7 @@ public class CurrentUVIAQI extends AsyncTask<String, Void, String> {
     private long sunsetTimeMillis;
 
     // Constructor to initialize MainActivity and API_KEY
-    public CurrentUVIAQI(MainActivity activity, Double latitude, Double longitude, long sunrise, long sunset) {
+    public CurrentUVIAQIAPI(MainActivity activity, Double latitude, Double longitude, long sunrise, long sunset) {
         this.mainActivity = activity;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -32,7 +28,7 @@ public class CurrentUVIAQI extends AsyncTask<String, Void, String> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        mainActivity.getLoader_progress_bar().setVisibility(View.VISIBLE);
+        mainActivity.hideLoader();
     }
 
     @Override
@@ -43,7 +39,7 @@ public class CurrentUVIAQI extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String result) {
         try {
-            mainActivity.getLoader_progress_bar().setVisibility(View.GONE);
+//            mainActivity.hideLoader();
 
             JSONObject jsonObject = new JSONObject(result);
             JSONObject current = jsonObject.getJSONObject("current");

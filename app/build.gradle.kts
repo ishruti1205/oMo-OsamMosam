@@ -35,7 +35,6 @@ android {
 dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
-//    implementation(libs.mainActivity)
     implementation(libs.constraintlayout)
     implementation(libs.activity)
     testImplementation(libs.junit)
@@ -43,8 +42,10 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     implementation(libs.simpleHttpRequest) // Use the alias from libs.versions.toml
     implementation(libs.glide)
+    implementation(libs.gson)
     annotationProcessor(libs.glideCompiler)
 
+//    implementation(libs.mainActivity)
 //    implementation("com.github.androdocs:Simple-HTTP-Request:v1.0")
 //    implementation('com.github.bumptech.glide:glide:4.15.1')
 //    annotationProcessor('com.github.bumptech.glide:compiler:4.15.1')

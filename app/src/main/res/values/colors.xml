@@ -3,8 +3,9 @@
     <color name="blackColor">#FF000000</color>
     <color name="whiteColor">#FFFFFFFF</color>
     <color name="darkWhiteColor">#336F6F6F</color>
-    <color name="offWhiteColor">#9B9EA9</color>
-    <color name="blueColor">#327FC9</color>
+    <color name="offWhiteColor">#7F8087</color>
+    <color name="blueColor">#3A69A3</color>
+    <color name="darkBlueColor">#E6121925</color>
     <color name="yellowColor">#FCC923</color>
 
     <color name="transparentBlackColor">#1A000000</color>
@@ -14,4 +15,7 @@
 
     <color name="grayColor">#928E88</color>
     <color name="darkGrayColor">#2D2D2D</color>
+
+    <color name="lightOffWhiteColor">#B1B2B4</color>
+    <color name="lightDarkGrayColor">#434343</color>
 </resources>

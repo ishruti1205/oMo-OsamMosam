@@ -64,17 +64,23 @@
         app:navigationIconTint="?attr/android:textColorPrimary"
         android:searchIcon="@drawable/search_img"
         android:background="@drawable/rectangle_shape"
-        android:queryBackground="@android:color/transparent">
+        android:queryBackground="@color/whiteColor">
 
-<!--        app:searchIconTint="?attr/android:textColorPrimary"-->
-
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/searchResults"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:visibility="gone"/>-->
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/searchResults"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"/>
-
+            android:layout_height="0dp"
+            android:layout_below="@id/search_bar"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:visibility="visible" />
     </SearchView>
 
     <!--    <com.google.android.material.search.SearchBar-->
